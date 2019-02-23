@@ -10,7 +10,7 @@ namespace DAL
         {
         }
 
-        public DbSet<Order> Order { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         public DbSet<PizzaOrder> PizzaOrders { get; set; }
     }

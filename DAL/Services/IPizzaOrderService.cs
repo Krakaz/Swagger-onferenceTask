@@ -19,6 +19,13 @@ namespace DAL.Services
         Task<int> SetOrderAsync(Order order);
 
         /// <summary>
+        /// Производит запись детализации заказа
+        /// </summary>
+        /// <param name="pizzaOrder"></param>
+        /// <returns></returns>
+        Task SavePizzaOrderAsync(IEnumerable<PizzaOrder> pizzaOrder);
+
+        /// <summary>
         /// Подтверждает заказ
         /// </summary>
         /// <param name="orderId"></param>
@@ -30,6 +37,12 @@ namespace DAL.Services
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
-        Task CanselOrderAsync(int orderId);
+        Task CancelOrderAsync(int orderId);
+
+        /// <summary>
+        /// Получает список всех заказов
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<Order> GetList();
     }
 }

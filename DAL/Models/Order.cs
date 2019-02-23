@@ -10,14 +10,12 @@ namespace DAL.Models
         [Key]
         public int Id { get; set; }
 
-        public TimeSpan DeliveryTime { get; set; }
-
-        public IEnumerable<PizzaOrder> Pizzas { get; set; }
+        public TimeSpan DeliveryTime { get; set; }        
 
         public int OrderPrice { get; set; }
 
         public bool IsConfirmed { get; set; }
 
-        public bool IsCanseled { get; set; }
+        public bool IsCanceled { get; set; }
     }
 }

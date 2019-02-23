@@ -14,7 +14,7 @@ namespace SwaggerConferenceTask.Services
         /// </summary>
         /// <param name="order">Заказ на пицы</param>
         /// <returns></returns>
-        Task<OrderResponse> SetOrderAsync(IEnumerable<OrderVM> order);
+        Task<OrderResponse> SetOrderAsync(IEnumerable<PizzaOrderVM> order);
 
         /// <summary>
         /// Подтверждает заказ
@@ -28,6 +28,18 @@ namespace SwaggerConferenceTask.Services
         /// </summary>
         /// <param name="orderId"></param>
         /// <returns></returns>
-        Task CanselOrderAsync(int orderId);
+        Task CancelOrderAsync(int orderId);
+
+        /// <summary>
+        /// Получение информации о пиццах
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<PizzaVM> GetPizzas();
+
+        /// <summary>
+        /// Получение информации о заказах
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<OrderResponseForList> GetOrders();
     }
 }

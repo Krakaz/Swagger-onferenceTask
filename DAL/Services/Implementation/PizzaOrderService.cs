@@ -1,5 +1,6 @@
 ﻿using DAL.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace DAL.Services.Implementation
 
         private Order GetOrder(int orderId)
         {
-            var order = this.apiContext.Order.SingleOrDefault(el => el.Id == orderId);
+            var order = this.apiContext.Orders.SingleOrDefault(el => el.Id == orderId);
             if(order == null)
             {
                 throw new NullReferenceException("Заказ не найден.");
@@ -23,12 +24,13 @@ namespace DAL.Services.Implementation
         {
             this.apiContext = apiContext;
         }
-        public async Task CanselOrderAsync(int orderId)
+
+        public async Task CancelOrderAsync(int orderId)
         {            
             var order = this.GetOrder(orderId);
 
             order.IsConfirmed = false;
-            order.IsCanseled = true;
+            order.IsCanceled = true;
 
             await this.apiContext.SaveChangesAsync();
         }
@@ -36,7 +38,7 @@ namespace DAL.Services.Implementation
         public async Task ConfirmOrderAsync(int orderId)
         {
             var order = this.GetOrder(orderId);
-            if (order.IsCanseled)
+            if (order.IsCanceled)
             {
                 throw new NullReferenceException("Заказ отменен и не может быть подтвеоржден.");
             }
@@ -46,9 +48,21 @@ namespace DAL.Services.Implementation
 
         public async Task<int> SetOrderAsync(Order order)
         {
-            await this.apiContext.Order.AddAsync(order);
+            await this.apiContext.Orders.AddAsync(order);
             await this.apiContext.SaveChangesAsync();
             return order.Id;
+        }
+
+        public IEnumerable<Order> GetList()
+        {
+            var orders = this.apiContext.Orders.ToList();
+            return this.apiContext.Orders.ToList();
+        }
+
+        public async Task SavePizzaOrderAsync(IEnumerable<PizzaOrder> pizzaOrder)
+        {
+            await this.apiContext.PizzaOrders.AddRangeAsync(pizzaOrder);
+            await this.apiContext.SaveChangesAsync();
         }
     }
 }
