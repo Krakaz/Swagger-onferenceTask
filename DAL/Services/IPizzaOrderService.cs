@@ -16,7 +16,7 @@ namespace DAL.Services
         /// </summary>
         /// <param name="order"></param>
         /// <returns></returns>
-        Task SetOrderAsync(Order order);
+        Task<int> SetOrderAsync(Order order);
 
         /// <summary>
         /// Подтверждает заказ
