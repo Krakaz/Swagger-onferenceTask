@@ -14,6 +14,8 @@ namespace DAL.Models
 
         public IEnumerable<PizzaOrder> Pizzas { get; set; }
 
+        public int OrderPrice { get; set; }
+
         public bool IsConfirmed { get; set; }
 
         public bool IsCanseled { get; set; }
